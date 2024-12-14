@@ -29,6 +29,9 @@ async function makeChart(){
     let maximum = Math.max(numbers);
     let minimum = Math.min(numbers);
 
+    maximum = maximum + 2;
+    minimum = minimum - 2;
+
     configuration = {
         type: 'line',
         data: {
@@ -46,8 +49,20 @@ async function makeChart(){
             responsive: true,
             scales: {
                 x: {
+                    display: true,
                     ticks: {
-                        color: 'black',  // Black tick labels on x-axis
+                        display: true,
+                        color: 'black',// Black tick labels on x-axis
+                        title: {
+                            display: true,
+                            text: 'Time',
+                            color: 'black',
+                            font: {
+                                family: 'Arial',
+                                size: 20,
+                                weight: 'bold'  // Bold text for x-axis labels
+                            }
+                        },
                         font: {
                             weight: 'bold'  // Bold text for x-axis labels
                         }
@@ -69,7 +84,7 @@ async function makeChart(){
                         borderDash: [5, 5],  // Optional: dashed grid lines
                     },
                     min: minimum,
-                    max: maximum
+                    max: maximum + 2
                 }
             },
             plugins: {
