@@ -8,8 +8,6 @@ async function getData(){
       console.log(resJson);
       temp = resJson.hourly.temperature_2m.slice(0, 101);
       dates = resJson.hourly.time.slice(0, 101);
-
-      //console.log(data)
     })
 
     return {
@@ -27,44 +25,71 @@ async function makeChart(){
     console.log(dates)
     console.log(numbers)
 
-    // console.log("Data List", numbers)
-    // for (let i=0; i < range; i++){
-    //     const date = new Date();
-    //     date.setDate(date.getDate() - i);
-    //     dates.push(date.toLocaleDateString("en-US"));
-    // };
-
-    
     const ctx = document.getElementById('myChart');
     let maximum = Math.max(numbers);
     let minimum = Math.min(numbers);
 
-
-    //var newChart = new Chart(ctx, 
     configuration = {
         type: 'line',
         data: {
-        labels: dates,
-        datasets: [{
-            label: 'Stock',
-            data: numbers,
-            borderWidth: 1
-        }]
+            labels: dates,
+            datasets: [{
+                label: 'Temperature',
+                data: numbers,
+                borderWidth: 2,
+                borderColor: '#1E90FF',  // Blue line color
+                backgroundColor: 'rgba(30, 144, 255, 0.2)',  // Light blue background
+                pointBackgroundColor: '#1E90FF'  // Blue points
+            }]
         },
         options: {
-        scales: {
-            y: {
-            min: minimum,
-            max: maximum
-            }
-        }
+            responsive: true,
+            scales: {
+                x: {
+                    ticks: {
+                        color: 'black',  // Black tick labels on x-axis
+                        font: {
+                            weight: 'bold'  // Bold text for x-axis labels
+                        }
+                    },
+                    grid: {
+                        color: 'black',  // Black grid lines for contrast
+                        borderDash: [5, 5],  // Optional: dashed grid lines
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: 'black',  // Black tick labels on y-axis
+                        font: {
+                            weight: 'bold'  // Bold text for y-axis labels
+                        }
+                    },
+                    grid: {
+                        color: 'black',  // Black grid lines for contrast
+                        borderDash: [5, 5],  // Optional: dashed grid lines
+                    },
+                    min: minimum,
+                    max: maximum
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#FFFFFF',  // White legend text
+                        font: {
+                            weight: 'bold'  // Bold text for legend
+                        }
+                    }
+                }
+            },
+            layout: {
+                padding: 20
+            },
+            backgroundColor: 'black'  // Dark background for chart area
         }
     };
 
-   
-    
     if (chart) {
-        console.log("Hello")
         chart.destroy();
         chart = new Chart(ctx, configuration);
     } else {
@@ -73,7 +98,6 @@ async function makeChart(){
 
     event.preventDefault();
 }
-
 
 window.onload = function(){
     makeChart();
