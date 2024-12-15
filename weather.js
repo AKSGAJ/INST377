@@ -124,7 +124,6 @@ window.onload = function(){
         style: maptilersdk.MapStyle.BACKDROP,  // stylesheet location
         zoom: 3,
         center: [-94.77, 38.57],
-        hash: true,
       }));
 
       const timeTextDiv = document.getElementById("time-text");
