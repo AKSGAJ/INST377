@@ -124,7 +124,6 @@ window.onload = function(){
         style: maptilersdk.MapStyle.BACKDROP,  // stylesheet location
         zoom: 3,
         center: [-94.77, 38.57],
-        hash: true,
       }));
 
       const timeTextDiv = document.getElementById("time-text");
@@ -150,9 +149,10 @@ window.onload = function(){
 
       // Update the date time display
       function refreshTime() {
-        const d = weatherLayer.getAnimationTimeDate();
-        timeTextDiv.innerText = d.toString();
-      }
+        const currentTime = new Date(); // Get the current real-world time
+        timeTextDiv.innerText = currentTime.toString(); // Update the time display with the current time
+    }
+    
 
       function updatePointerValue(lngLat) {
         if (!lngLat) return;
@@ -164,6 +164,7 @@ window.onload = function(){
         }
         pointerDataDiv.innerText = `${value.value.toFixed(1)}°`
       } 
+      setInterval(refreshTime, 1000);
 
       map.on('mousemove', (e) => {
         updatePointerValue(e.lngLat);
