@@ -1,8 +1,10 @@
 let chart;
-async function getData(){
+const host = window.location.origin;
+
+async function getData(lat, long){
     temp = [];
     dates = [];
-    await fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m')
+    await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m`)
     .then((res) => res.json())
     .then((resJson) => {
       console.log(resJson);
@@ -16,9 +18,9 @@ async function getData(){
     };
 }
 
-async function makeChart(){
+async function makeChart(lat, long){
     
-    const data = await getData()
+    const data = await getData(lat, long)
     const dates = data.dates;
     const numbers = data.temp;
 
