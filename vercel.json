@@ -8,8 +8,16 @@
     ],
     "routes": [
         {
+            "src": "/coordinates",
+            "dest": "/index.js"
+        },
+        {
+            "src": "/coords",
+            "dest": "/index.js"
+        },
+        {
             "src": "/(.*)",
-            "dest": "/"
+            "dest": "/index.js"
         }
     ]
 }

@@ -198,6 +198,7 @@ async function getLocality(lat, long){
     return result
 }
 
+
 window.onload = function(){
     makeChart();
 }
@@ -253,3 +254,5 @@ window.onload = function(){
       map.on('mousemove', (e) => {
         updatePointerValue(e.lngLat);
       });
+
+      
