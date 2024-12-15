@@ -114,6 +114,88 @@ async function makeChart(){
     event.preventDefault();
 }
 
+async function createLocation(lat, long){
+    local = getLocality(lat, long);
+    console.log("Creating Location")
+    await fetch(`${host}/coordinates`, {
+    method: 'POST',
+    body: JSON.stringify({
+        firstName: `${local}`,
+        lastName: `${document.getElementById('lat').value}`,
+        userState: `${document.getElementById('long').value}`
+    }),
+    headers: {
+        'Content-Type': 'application/json'
+        }
+    })
+    .then((res) => res.json())
+
+    await loadLocationData();
+}
+
+async function loadLocationData(){
+    await fetch(`${host}/coords`)
+    .then((res) => res.json())
+    .then((resJson) => {
+        const table = document.createElement('table')
+        table.setAttribute('id', 'locationInfo')
+
+        const tableRow = document.createElement('tr');
+
+        const tableHeading1 = document.createElement('th')
+        tableHeading1.innerHTML = 'Locality'
+        tableRow.appendChild(tableHeading1)
+
+        const tableHeading2 = document.createElement('th')
+        tableHeading2.innerHTML = 'Latitude'
+        tableRow.appendChild(tableHeading2)
+
+        const tableHeading3 = document.createElement('th')
+        tableHeading3.innerHTML = 'Longitude'
+        tableRow.appendChild(tableHeading3)
+
+        table.appendChild(tableRow);
+
+        resJson.forEach(location => {
+            const locationTableRow = document.createElement('tr')
+            const locationTableLocality = document.createElement('td')
+            const locationTableLatitude = document.createElement('td')
+            const locationTableLongitude = document.createElement('td')
+
+            locationTableLocality.innerHTML = location.locality;
+            locationTableLatitude.innerHTML = location.latitude;
+            locationTableLongitude.innerHTML = location.longitude;
+
+            locationTableRow.appendChild(locationTableLocality);
+            locationTableRow.appendChild(locationTableLatitude);
+            locationTableRow.appendChild(locationTableLongitude);
+
+            table.appendChild(locationTableRow);
+        });
+
+
+        const preExistingTable = document.getElementById('locationInfo')
+        if(preExistingTable){
+            preExistingTable.remove();
+        }
+        document.body.appendChild(table);
+    });
+}
+
+async function getLocality(lat, long){
+    var result;
+    const local = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}&localityLanguage=en`
+    var loc = await fetch(local)
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        result = data.locality;
+        console.log(result)
+    });
+
+    return result
+}
+
 window.onload = function(){
     makeChart();
 }
