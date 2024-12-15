@@ -1,7 +1,7 @@
 const express = require('express')
 const supabaseClient = require('@supabase/supabase-js')
 const bodyParser = require('body-parser')
-const {isValidStateAbbreviation} = require("usa-state-validator")
+
 
 const app = express()
 const port = 3000
@@ -13,11 +13,11 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = supabaseClient.createClient(supabaseUrl, supabaseKey);
 
 
-app.get('/customers', async (req, res) => {
-    console.log('Attempting to get all customers.')
+app.get('/coordinates', async (req, res) => {
+    console.log('Attempting to get all locations.')
 
     const { data, error } = await supabase
-  .from('customer')
+  .from('coords')
   .select()
 
     if(error){
@@ -30,28 +30,17 @@ app.get('/customers', async (req, res) => {
 
 })
 
-app.post('/customer', async (req, res) => {
-    console.log('Adding customer...')
+app.post('/coords', async (req, res) => {
+    console.log('Adding location...')
     console.log('Request', req.body)
 
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
-    const userState = req.body.userState;
-
-    if(!isValidStateAbbreviation(userState)){
-        console.error(`State ${userState} is invalid`);
-        res.statusCode = 400;
-        res.header('Content-Type', 'application/json')
-        const stateInvalidErrorJson = {
-            'message': `${userState} is not a valid State Abbreviation`,
-        };
-        res.send(JSON.stringify(stateInvalidErrorJson));
-        return;
-    }
+    const locality = req.body.local
+    const latitude = req.body.lat;
+    const longitude = req.body.long;
 
     const { data, error } = await supabase
-  .from('customer')
-  .insert({customer_first_name: firstName, customer_last_name: lastName, customer_state: userState})
+  .from('coords')
+  .insert({locality: local, latitude: lat, longitude: long})
   .select();
 
   if(error){
