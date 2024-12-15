@@ -117,3 +117,54 @@ async function makeChart(){
 window.onload = function(){
     makeChart();
 }
+
+  maptilersdk.config.apiKey = 'S3e8Gh3icLKzeUp1iSs5';
+      const map = (window.map = new maptilersdk.Map({
+        container: 'map', // container's id or the HTML element to render the map
+        style: maptilersdk.MapStyle.BACKDROP,  // stylesheet location
+        zoom: 3,
+        center: [-94.77, 38.57],
+        hash: true,
+      }));
+
+      const timeTextDiv = document.getElementById("time-text");
+      const pointerDataDiv = document.getElementById("pointer-data");
+      let pointerLngLat = null;
+
+      const weatherLayer = new maptilerweather.TemperatureLayer({
+        colorramp: maptilerweather.ColorRamp.builtin.TEMPERATURE_3
+      });
+
+      map.on('load', function () {
+        map.setPaintProperty("Water", 'fill-color', "rgba(0, 0, 0, 0.4)");
+        map.addLayer(weatherLayer, 'Water');
+        weatherLayer.animateByFactor(3600);
+      });
+
+      map.on('mouseout', function(evt) {
+        if (!evt.originalEvent.relatedTarget) {
+          pointerDataDiv.innerText = "";
+          pointerLngLat = null;
+        }
+      });
+
+      // Update the date time display
+      function refreshTime() {
+        const d = weatherLayer.getAnimationTimeDate();
+        timeTextDiv.innerText = d.toString();
+      }
+
+      function updatePointerValue(lngLat) {
+        if (!lngLat) return;
+        pointerLngLat = lngLat;
+        const value = weatherLayer.pickAt(lngLat.lng, lngLat.lat);
+        if (!value) {
+          pointerDataDiv.innerText = "";
+          return;
+        }
+        pointerDataDiv.innerText = `${value.value.toFixed(1)}°`
+      } 
+
+      map.on('mousemove', (e) => {
+        updatePointerValue(e.lngLat);
+      });
