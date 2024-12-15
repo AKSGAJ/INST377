@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href = "uni.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.umd.min.js"></script>
+    <link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.css" rel="stylesheet" />
+    <script src="https://cdn.maptiler.com/maptiler-weather/v2.0.0/maptiler-weather.umd.min.js"></script>
     <script src="weather.js" defer></script>
 
 
@@ -42,6 +45,15 @@
         <div class="chart-container">
         <canvas id="myChart"></canvas>
     </div>
+    <div id="map-container">
+    <div id="time-info">
+        <span id="time-text"></span>
+      </div>
+      <div id="variable-name">Temperature</div>
+      <div id="pointer-data"></div>
+      <div id="map"></div>
+      </div>
+
     <footer id="footer">
         <p>&copy; 2024 WeatherNow. All Rights Reserved.</p>
         <ul>
