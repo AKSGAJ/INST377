@@ -37,10 +37,11 @@
             <input type="text" id="long" required>
             <br>
         
-            <button type="button" class="button-30" role="button"  onclick="makeChart(lat.value, long.value)">Make Chart</button>
-            </form> 
+            <button type="button" onclick="makeChart(lat.value, long.value); createLocation(lat.value, long.value)">Make Chart</button>
+        </form> 
     </div>
     <!-- Graph -->
+
     <div>
         <div class="chart-container">
         <canvas id="myChart"></canvas>
