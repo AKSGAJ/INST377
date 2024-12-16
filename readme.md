@@ -1,7 +1,7 @@
-Names: Jason Candila
+Names: Jason Candila, Evan Carr
 # WeatherNow
 ## Description
-WeatherNow is a web app designed to provide accurate and up-to-date weather information for users. The app displays current weather conditions and forecasts for the coming days in a simple, user-friendly interface. Whether you're planning your day, a trip, or just curious about the weather, WeatherNow makes staying informed easy and convenient.
+WeatherNow is a web app designed to provide accurate and up-to-date weather information for users. The app displays current weather conditions and forecasts for the coming days in a simple, user-friendly interface. Whether you're planning your day, a trip, or just curious about the weather, WeatherNow makes staying informed easy and convenient. Simply enter the longitude and latitude of your desired location to view a graph and map displaying the weather conditions for that area.
 
 ## Target Platforms
 WeatherNow is designed to work seamlessly on both desktop and mobile platforms. Supported platforms include:
@@ -120,7 +120,13 @@ Ensure you have the following installed on your machine:
 ## Known Bugs and Future Roadmap
 
 ### Known Bugs
+Database Not Working:
+Currently our database has not been able to post data nor get data to be displayed on the app itself. The database is acknowledged by Insomnia during tests, and we are able to get current stored data. We believe the reason for this is that the post requires us to use data that the user inputs plus an input from an api that returns locality based on the inputted coordinates. 
 
+We have not figured out a way to access the locality value and therefore we cannot do the following:
+1. Post data to the database.
+2. Get data from the database to display on the app.
+3. Update the database and have it dynamically show new submissions on the app.
 
 ### Roadmap for Future Development
 1. Add authentication and authorization for secure API access.
