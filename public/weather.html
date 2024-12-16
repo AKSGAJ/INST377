@@ -11,9 +11,33 @@
     <script src="weather.js" defer></script>
 
 
+    <style>
+        body {
+            animation: fadeInAnimation ease 3s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        body {
+            opacity: 0;
+            transition: opacity 3s;
+        }
+        
+    </style>
+
     <title> Weather Page </title>
 </head>
-<body>
+<body onload="document.body.style.opacity='1'">
     <!-- Header Section -->
     <header id = "bar">
         <h1> Weather Information Page </h1>
@@ -36,8 +60,8 @@
             <label> Longitude: </label>
             <input type="text" id="long" required>
             <br>
-        
-            <button type="button" onclick="makeChart(lat.value, long.value); createLocation(lat.value, long.value)">Make Chart</button>
+            <br>
+            <button class="button-85" type="button" onclick="makeChart(lat.value, long.value); createLocation(lat.value, long.value)">Make Chart</button>
         </form> 
     </div>
     <!-- Graph -->
