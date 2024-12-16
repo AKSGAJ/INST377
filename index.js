@@ -33,13 +33,29 @@ app.get('/coordinates', async (req, res) => {
 
 })
 
+async function getLocality(lat, long){
+    var result;
+    const local = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}&localityLanguage=en`
+    var loc = await fetch(local)
+    .then(res => res.json())
+    .then(data => {
+        result = data.locality;
+        console.log(result)
+    });
+
+    return result
+}
+
 app.post('/coords', async (req, res) => {
     console.log('Adding location...')
     console.log('Request', req.body)
 
-    const locality = req.body.local
+ 
+    
     const latitude = req.body.lat;
     const longitude = req.body.long;
+    let local = getLocality(latitude, longitude);
+    const locality = local;
 
     const { data, error } = await supabase
   .from('coords')
