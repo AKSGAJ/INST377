@@ -8,8 +8,8 @@ async function getData(lat, long){
     .then((res) => res.json())
     .then((resJson) => {
       console.log(resJson);
-      temp = resJson.hourly.temperature_2m.slice(0, 101);
-      dates = resJson.hourly.time.slice(0, 101);
+      temp = resJson.hourly.temperature_2m.slice(0, 25);
+      dates = resJson.hourly.time.slice(0, 25);
     })
 
     return {
@@ -24,8 +24,8 @@ async function makeChart(lat, long){
     const dates = data.dates;
     const numbers = data.temp;
 
-    console.log(dates)
-    console.log(numbers)
+    // console.log(dates)
+    // console.log(numbers)
 
     const ctx = document.getElementById('myChart');
     let maximum = Math.max(numbers);
@@ -117,7 +117,11 @@ async function makeChart(lat, long){
 }
 
 async function createLocation(lat, long){
-    local = getLocality(lat, long);
+    local = await getLocality(lat, long);
+    console.log(local)
+    console.log(lat)
+    console.log(long)
+
     console.log("Creating Location")
     await fetch(`${host}/coordinates`, {
     method: 'POST',
