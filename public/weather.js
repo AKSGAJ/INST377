@@ -204,7 +204,8 @@ async function getLocality(lat, long){
 
 
 window.onload = function(){
-    makeChart();
+    makeChart(),
+    loadLocationData();
 }
 
   maptilersdk.config.apiKey = 'S3e8Gh3icLKzeUp1iSs5';
