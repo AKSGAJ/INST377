@@ -1,11 +1,11 @@
-const express = require('express')
-const supabaseClient = require('@supabase/supabase-js')
-const bodyParser = require('body-parser')
+const express = require('express');
+const supabaseClient = require('@supabase/supabase-js');
+const bodyParser = require('body-parser');
 
 
-const app = express()
-const port = 3000
-app.use(bodyParser.json())
+const app = express();
+const port = 3000;
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
 const supabaseUrl = 'https://jlxfnrgviemtjfboysub.supabase.co';
@@ -21,7 +21,7 @@ app.get('/coordinates', async (req, res) => {
 
     const { data, error } = await supabase
   .from('coords')
-  .select()
+  .select();
 
     if(error){
         console.log('Error:', error)

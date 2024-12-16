@@ -123,7 +123,7 @@ async function createLocation(lat, long){
     console.log(long)
 
     console.log("Creating Location")
-    await fetch(`${host}/coordinates`, {
+    await fetch(`${host}/coords`, {
     method: 'POST',
     body: JSON.stringify({
         firstName: `${local}`,
@@ -140,7 +140,7 @@ async function createLocation(lat, long){
 }
 
 async function loadLocationData(){
-    await fetch(`${host}/coords`)
+    await fetch(`${host}/coordinates`)
     .then((res) => res.json())
     .then((resJson) => {
         const table = document.createElement('table')
