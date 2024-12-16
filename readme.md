@@ -120,7 +120,13 @@ Ensure you have the following installed on your machine:
 ## Known Bugs and Future Roadmap
 
 ### Known Bugs
+Database Not Working:
+Currently our database has not been able to post data nor get data to be displayed on the app itself. The database is acknowledged by Insomnia during tests, and we are able to get current stored data. We believe the reason for this is that the post requires us to use data that the user inputs plus an input from an api that returns locality based on the inputted coordinates. 
 
+We have not figured out a way to access the locality value and therefore we cannot do the following:
+1. Post data to the database.
+2. Get data from the database to display on the app.
+3. Update the database and have it dynamically show new submissions on the app.
 
 ### Roadmap for Future Development
 1. Add authentication and authorization for secure API access.
