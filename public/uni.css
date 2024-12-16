@@ -27,9 +27,12 @@ h1, h2, h3 {
 }
 
 #main-nav {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    padding: 10px 0;
+    background: radial-gradient(at center bottom, rgb(153, 246, 228), rgb(34, 211, 238), rgb(59, 130, 246));
+    padding: 10px; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 10px;
 }
 
 #main-nav ul {
