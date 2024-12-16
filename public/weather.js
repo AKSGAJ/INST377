@@ -197,6 +197,8 @@ async function getLocality(lat, long){
         console.log(data)
         result = data.locality;
         console.log(result)
+        const loadMessage = document.getElementById('add');
+      loadMessage.innerHTML = `You Entered The Coordinates For ${result}`;
     });
 
     return result

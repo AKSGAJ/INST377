@@ -51,8 +51,8 @@
             <li><a href="about.html">About</a></li>
         </ul>
     </nav>
-
-    <div>
+<br>
+    <divid id = "main-nav">
         <form>
             <label> Latitude: </label>
             <input type="text" id="lat" required>
@@ -63,7 +63,11 @@
             <br>
             <button class="button-85" type="button" onclick="makeChart(lat.value, long.value); createLocation(lat.value, long.value)">Make Chart</button>
         </form> 
+
+        <h2 id="add"> </h2>
     </div>
+
+
     <!-- Graph -->
 
     <div>
