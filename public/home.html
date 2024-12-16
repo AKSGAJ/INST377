@@ -5,8 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="uni.css">
     <title>Home Page</title>
+
+    <style>
+        body {
+            animation: fadeInAnimation ease 3s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        body {
+            opacity: 0;
+            transition: opacity 3s;
+        }
+        
+    </style>
 </head>
-<body>
+<body onload="document.body.style.opacity='1'">
     <!-- Header Section -->
     <header id="bar">
         <h1>WeatherNow</h1>
